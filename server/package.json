@@ -9,24 +9,16 @@
     "build": "ENVIRONMENT=$ENVIRONMENT webpack",
     "prod-build": "ENVIRONMENT='production' gulp"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bbachi/nodejs-restapi-mongo.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/bbachi/nodejs-restapi-mongo/issues"
-  },
-  "homepage": "https://github.com/bbachi/nodejs-restapi-mongo#readme",
   "dependencies": {
-    "dotenv": "^8.2.0",
-    
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.10",
+    "path": "^0.12.7",
     "pine": "^1.1.1"
   },
   "devDependencies": {

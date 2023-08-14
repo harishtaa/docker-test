@@ -6,13 +6,21 @@ import VideosRouter from "./routes/videos.routes.js"
 import ProductsRouter from "./routes/products.routes.js"
 import CommentsRouter from "./routes/comments.routes.js"
 import cors from "cors"
+const logger = require('./logger/server.logger.js');
 
-dotenv.config();
-
+console.log('environment    ', process.env.ENVIRONMENT)
+console.log('PORT    ', process.env.PORT)
+console.log('MONGO_CONNECTION_STRING    ', process.env.MONGO_CONNECTION_STRING)
+if(process.env.ENVIRONMENT !== 'production') {
+    require('dotenv').config()
+}
 
 
 const app = express();
+const port = process.env.PORT || 3080;
+const path = require('path');
 app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(express.static(path.join(__dirname, './client/build')));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended:true
@@ -22,20 +30,27 @@ app.use('/videos', VideosRouter)
 app.use('/products', ProductsRouter)
 app.use('/comments', CommentsRouter)
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, './ui/build/index.html'));
+    res.sendFile(path.join(__dirname, './client/build/index.html'));
 });
 
-app.listen(process.env.PORT || 3080, () => {
-    console.log(`Server started at ${process.env.PORT}`)
+app.listen(port, () => {
+    console.log(`Server listening on the port  ${port}`);
 })
 
-mongoose.connect(process.env.DATABASE_URL)
-const db = mongoose.connection;
+const url = process.env.MONGO_CONNECTION_STRING;
+logger.info("process.env.MONGO_CONNECTION_STRING :::" + process.env.MONGO_CONNECTION_STRING);
 
-db.on('error', (err) => {
-    console.error("Failed to connect",err)
+mongoose.connect(url, {
+    useNewUrlParser: true,
+    useFindAndModify: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
 })
 
-db.once('connected', () => {
-    console.info("database connected")
-})
+mongoose.connection.once("open", async () => {
+    logger.info("Connected to database");
+});
+
+mongoose.connection.on("error", (err) => {
+    logger.error("Error connecting to database  ", err);
+});

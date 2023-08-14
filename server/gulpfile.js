@@ -9,11 +9,11 @@ const { setEnvironmentData } = require('worker_threads');
 var exec = require('child_process').exec;
 
 const paths = {
-  prod_build: '../prod-build',
+  prod_build: '../prod-build', // Update path
   server_file_name: 'server.bundle.js',
-  react_src: '../client/build/**/*',
-  react_dist: '../prod-build/client/build',
-  zipped_file_name: 'mern-prod.zip'
+  react_src: '../client/build/**/*', // Update path
+  react_dist: '../prod-build/client/build', // Update path
+  zipped_file_name: 'mern-prod.zip',
 };
 
 function clean()  {
