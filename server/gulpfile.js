@@ -10,9 +10,9 @@ var exec = require('child_process').exec;
 
 const paths = {
   prod_build: '../prod-build',
-  server_file_name: 'api.bundle.js',
-  react_src: '../ui/build/**/*',
-  react_dist: '../prod-build/ui/build',
+  server_file_name: 'server.bundle.js',
+  react_src: '../client/build/**/*',
+  react_dist: '../prod-build/client/build',
   zipped_file_name: 'mern-prod.zip'
 };
 
@@ -35,7 +35,7 @@ function createProdBuildFolder() {
 
 function buildReactCodeTask(cb) {
   log('building React code into the directory')
-  return exec('cd ../ui && npm run build', function (err, stdout, stderr) {
+  return exec('cd ../client && npm run build', function (err, stdout, stderr) {
     log(stdout);
     log(stderr);
     cb(err);
@@ -51,7 +51,7 @@ function copyReactCodeTask() {
 function copyNodeJSCodeTask() {
   log('building and copying server code into the directory')
   return webpack_stream(webpack_config)
-        .pipe(dest(`${paths.prod_build}/api/`))
+        .pipe(dest(`${paths.prod_build}/server/`))
 }
 
 function zippingTask() {

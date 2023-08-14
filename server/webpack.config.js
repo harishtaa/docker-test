@@ -26,10 +26,10 @@ if (environment === 'test') {
 }
 
 module.exports = {
-  entry: './server.js',
+  entry: './index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'api.bundle.js',
+    filename: 'server.bundle.js',
   },
   target: 'node',
   plugins: [

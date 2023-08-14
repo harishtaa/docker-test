@@ -5,10 +5,12 @@ COPY client/ ./client/
 RUN cd client && npm install && npm run build
 
 # Stage2: API Build
+# Stage2: API Build
 FROM node:14-slim AS server-build
 WORKDIR /usr/src
 COPY server/ ./server/
-RUN cd server && npm install && ENVIRONMENT=production npm run build
+ENV ENVIRONMENT=production  
+RUN cd server && npm install && npm run build
 RUN ls
 
 # Stage3: Packagign the app
