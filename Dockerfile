@@ -22,4 +22,4 @@ RUN ls
 
 EXPOSE 80
 
-CMD ["node", "api.bundle.js"]
+CMD ["node", "server.bundle.js"]

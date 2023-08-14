@@ -21,6 +21,9 @@ app.use(bodyParser.urlencoded({
 app.use('/videos', VideosRouter)
 app.use('/products', ProductsRouter)
 app.use('/comments', CommentsRouter)
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './ui/build/index.html'));
+});
 
 app.listen(process.env.PORT || 3080, () => {
     console.log(`Server started at ${process.env.PORT}`)
