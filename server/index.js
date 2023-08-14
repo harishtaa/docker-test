@@ -22,8 +22,8 @@ app.use('/videos', VideosRouter)
 app.use('/products', ProductsRouter)
 app.use('/comments', CommentsRouter)
 
-app.listen(5000, () => {
-    console.log(`Server started at ${5000}`)
+app.listen(process.env.PORT || 3080, () => {
+    console.log(`Server started at ${process.env.PORT}`)
 })
 
 mongoose.connect(process.env.DATABASE_URL)

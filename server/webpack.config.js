@@ -21,7 +21,7 @@ if (environment === 'test') {
   ENVIRONMENT_VARIABLES = {
     'process.env.ENVIRONMENT': JSON.stringify('production'),
     'process.env.PORT': JSON.stringify('80'),
-    'process.env.MONGO_CONNECTION_STRING': JSON.stringify('mongodb+srv://harishtaa:u0SFtlEJl84jbnl1@gigihlab.qqu2ydk.mongodb.net/cinema')
+    'process.env.MONGO_CONNECTION_STRING': JSON.stringify('mongodb+srv://harishtaa:BHCa78WmP8p59T6s@toko-play.tpcjbyj.mongodb.net/tokoplay')
   };
 }
 
